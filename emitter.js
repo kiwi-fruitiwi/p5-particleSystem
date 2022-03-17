@@ -14,7 +14,7 @@ class Emitter {
 
 
     show() {
-        for (const p of particles) {
+        for (const p of this.particles) {
             p.show()
         }
     }
@@ -24,22 +24,27 @@ class Emitter {
      * applies a force to all the particles in this emitter
      * @param force: p5.Vector
      */
-    apply_force(force) {
-        for (const p of particles) {
-            p.apply_force(force)
+    applyForce(force) {
+        for (const p of this.particles) {
+            p.applyForce(force)
         }
     }
 
 
     /** emits the correct type of particle */
     emit() {
-
+        for (let i=0; i<this.emissionRate; i++) {
+            this.particles.push(new Particle(this.pos.x, this.pos.y))
+        }
     }
 
 
     /** shows particles and removes particles past their lifetime */
     update() {
-
-
+        this.emit(this.emissionRate)
+        for (const p of this.particles) {
+            p.update()
+            p.edges()
+        }
     }
 }

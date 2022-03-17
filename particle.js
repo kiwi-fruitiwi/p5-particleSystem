@@ -51,9 +51,9 @@ class Particle {
     }
 
 
-    applyForce(f) {
+    applyForce(force) {
         // F=ma, but we assume m=1, so F=a
-        this.acc.add(f)
+        this.acc.add(force)
         this.acc.limit(this.maxforce)
     }
 

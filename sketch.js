@@ -11,15 +11,18 @@ let instructions  /* div for instructions */
 
 
 let particles
+let emitter
 
 
 function preload() {
-    font = loadFont('data/meiryo.ttf')
+    font = loadFont('data/consola.ttf')
 }
 
 
 function setup() {
     let cnv = createCanvas(600, 300)
+    textFont(font, 14)
+
     noCursor()
     cnv.parent('#canvas')
 
@@ -36,6 +39,8 @@ function setup() {
     for (let i=0; i<100; i++) {
         particles.push(new Particle(random(width), random(height)))
     }
+
+    emitter = new Emitter(width/2, height/2, 'stand-in')
 }
 
 
@@ -45,7 +50,7 @@ function draw() {
     stroke(0, 0, 100)
     circle(mouseX, mouseY, 10)
 
-    for (p of particles) {
+    for (const p of particles) {
         if (!p.finished()) {
             p.show()
             p.update()
@@ -54,6 +59,20 @@ function draw() {
 
         }
     }
+
+
+    emitter.applyForce(new p5.Vector(0, 0.098))
+    emitter.update()
+    emitter.show()
+
+    /** debug corner 🍁 TODO: make a function for this. dictionary! */
+    const DEBUG_Y_OFFSET = height - 50 /* floor of debug corner */
+    const LINE_HEIGHT = textAscent() + textDescent() + 2 /* 2 = lineSpacing */
+    fill(0, 0, 100, 100) /* white */
+    strokeWeight(0)
+    text(`emitter size: ${emitter.particles.length}`, 50, DEBUG_Y_OFFSET)
+    // text(`height: ${h.toFixed(2)}`, 50, DEBUG_Y_OFFSET - LINE_HEIGHT)
+    // text(`σ: ${σ.toFixed(2)}`, 50, DEBUG_Y_OFFSET - n*LINE_HEIGHT)
 }
 
 
