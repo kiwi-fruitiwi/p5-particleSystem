@@ -8,7 +8,7 @@ class Emitter {
 
         /* an emitter manages a list of particles */
         this.particles = []
-        this.emissionRate = 1
+        this.emissionRate = 3
         this.type = type /* a key string for different particle types */
     }
 

@@ -65,7 +65,7 @@ class Particle {
         this.vel.mult(0.995) // friction
         this.acc.mult(0)
 
-        this.lifetime -= random(0.5)
+        this.lifetime -= random(0.1, 0.6)
     }
 
 

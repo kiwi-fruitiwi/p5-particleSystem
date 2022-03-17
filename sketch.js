@@ -38,9 +38,9 @@ function setup() {
         r → revitalize all current particle lifespans</pre>`)
 
     particles = []
-    // for (let i=0; i<100; i++) {
-    //     particles.push(new Particle(random(width), random(height)))
-    // }
+    for (let i=0; i<100; i++) {
+        particles.push(new Particle(random(width), random(height)))
+    }
 
     emitter = new Emitter(width/2, height/2, 'confetti')
 }
@@ -88,6 +88,7 @@ function keyPressed() {
         noLoop()
         instructions.html(`<pre>
             sketch stopped</pre>`)
+        cursor()
     }
 
     if (key === 'r') {

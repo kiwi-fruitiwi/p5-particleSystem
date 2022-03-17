@@ -2,7 +2,7 @@ class Confetti extends Particle {
     constructor(x, y) {
         super(x, y)
         this.angle = random(TAU)
-        this.r = 10
+        this.r = 7
         this.lifetime = random(10, 25)
     }
 
@@ -15,15 +15,17 @@ class Confetti extends Particle {
 
         if (this.finished()) {
             strokeWeight(1)
-            stroke(random(360), 100, 100, 100)
+            const h = random(360)
+            stroke(h, 100, 100, 100)
+            fill(h, 100, 100, 50)
+            circle(this.pos.x, this.pos.y, 6)
+        } else {
+            push()
+            translate(this.pos.x, this.pos.y)
+            rotate(this.angle)
+            rect(0, 0, this.r, this.r, 3)
+            pop()
         }
-
-        push()
-        translate(this.pos.x, this.pos.y)
-        rotate(this.angle)
-        rect(0, 0, this.r, this.r)
-        pop()
-
         this.angle += 0.2
     }
 }
