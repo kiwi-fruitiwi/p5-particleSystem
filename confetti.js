@@ -2,18 +2,20 @@ class Confetti extends Particle {
     constructor(x, y) {
         super(x, y)
         this.angle = random(TAU)
-        this.r = 5
+        this.r = 10
         this.lifetime = random(10, 25)
     }
 
 
     show() {
+        // DEBUG_MSG = `${this.pos.x}`
+
         noStroke()
         fill(0, 0, 100, this.lifetime)
 
         if (this.finished()) {
-            strokeWeight(0.5)
-            stroke(random(360), 100, 100)
+            strokeWeight(1)
+            stroke(random(360), 100, 100, 100)
         }
 
         push()

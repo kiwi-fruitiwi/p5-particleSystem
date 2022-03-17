@@ -14,7 +14,7 @@ class Particle {
 
 
     finished() {
-        return this.lifetime < 0
+        return this.lifetime <= 0
     }
 
 
@@ -70,11 +70,11 @@ class Particle {
 
 
     show() {
-        stroke(this.hue, 100, 100, this.lifetime)
+        stroke(this.hue, 100, 100)
         fill(this.hue, 100, 100, this.lifetime)
 
         /* TODO add .png texture later */
         circle(this.pos.x, this.pos.y, this.r*2)
-        fill(0, 0, 100)
+        // fill(0, 0, 100)
     }
 }

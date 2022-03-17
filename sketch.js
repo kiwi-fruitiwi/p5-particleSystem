@@ -8,6 +8,7 @@
 
 let font
 let instructions  /* div for instructions */
+let DEBUG_MSG
 
 
 let particles
@@ -20,6 +21,7 @@ function preload() {
 
 
 function setup() {
+    rectMode(CENTER)
     let cnv = createCanvas(600, 300)
     textFont(font, 14)
 
@@ -36,9 +38,9 @@ function setup() {
         r → revitalize all current particle lifespans</pre>`)
 
     particles = []
-    for (let i=0; i<100; i++) {
-        particles.push(new Particle(random(width), random(height)))
-    }
+    // for (let i=0; i<100; i++) {
+    //     particles.push(new Particle(random(width), random(height)))
+    // }
 
     emitter = new Emitter(width/2, height/2, 'confetti')
 }
@@ -74,6 +76,7 @@ function draw() {
     strokeWeight(0)
     text(`emitter size: ${emitter.particles.length}`, LEFT_MARGIN, DEBUG_Y_OFFSET)
     text(`particles: ${particles.length}`, LEFT_MARGIN, DEBUG_Y_OFFSET - LINE_HEIGHT)
+    text(`debug: ${DEBUG_MSG}`, LEFT_MARGIN, DEBUG_Y_OFFSET - 2*LINE_HEIGHT)
     // text(`height: ${h.toFixed(2)}`, 50, DEBUG_Y_OFFSET - LINE_HEIGHT)
     // text(`σ: ${σ.toFixed(2)}`, 50, DEBUG_Y_OFFSET - n*LINE_HEIGHT)
 }

@@ -33,7 +33,7 @@ class Emitter {
 
     /** emits the correct type of particle */
     emit() {
-        if (frameCount % 5 === 0)
+        // if (frameCount % 5 === 0)
             for (let i=0; i<this.emissionRate; i++) {
 
                 if (this.type === 'particle')
@@ -50,9 +50,18 @@ class Emitter {
         this.pos.y = mouseY
 
         this.emit(this.emissionRate)
+        let newEmitterParticles = []
+
         for (const p of this.particles) {
             p.update()
-            // p.edges()
+            p.edges()
+            if (p.finished()) {
+                p.show()
+            } else {
+                newEmitterParticles.push(p)
+            }
         }
+
+        this.particles = newEmitterParticles
     }
 }
