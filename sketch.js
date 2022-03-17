@@ -29,7 +29,8 @@ function setup() {
     instructions = select('#ins')
     instructions.html(`<pre>
         [1,2,3,4,5] → no function
-        z → freeze sketch</pre>`)
+        z → freeze sketch
+        r → revitalize all current particle lifespans</pre>`)
 
     particles = []
     for (let i=0; i<100; i++) {
@@ -62,5 +63,11 @@ function keyPressed() {
         noLoop()
         instructions.html(`<pre>
             sketch stopped</pre>`)
+    }
+
+    if (key === 'r') {
+        for (let p of particles) {
+            p.lifetime = 100
+        }
     }
 }
