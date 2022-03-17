@@ -33,18 +33,26 @@ class Emitter {
 
     /** emits the correct type of particle */
     emit() {
-        for (let i=0; i<this.emissionRate; i++) {
-            this.particles.push(new Particle(this.pos.x, this.pos.y))
-        }
+        if (frameCount % 5 === 0)
+            for (let i=0; i<this.emissionRate; i++) {
+
+                if (this.type === 'particle')
+                    this.particles.push(new Particle(this.pos.x, this.pos.y))
+                else if (this.type === 'confetti')
+                    this.particles.push(new Confetti(this.pos.x, this.pos.y))
+            }
     }
 
 
     /** shows particles and removes particles past their lifetime */
     update() {
+        this.pos.x = mouseX
+        this.pos.y = mouseY
+
         this.emit(this.emissionRate)
         for (const p of this.particles) {
             p.update()
-            p.edges()
+            // p.edges()
         }
     }
 }

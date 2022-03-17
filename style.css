@@ -14,4 +14,6 @@ body {
     padding: 2px 4px 2px 4px;
     font-family: consolas;
     font-size: 12px;
+
+    height: 200px;
 }

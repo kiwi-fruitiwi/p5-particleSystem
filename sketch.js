@@ -40,7 +40,7 @@ function setup() {
         particles.push(new Particle(random(width), random(height)))
     }
 
-    emitter = new Emitter(width/2, height/2, 'stand-in')
+    emitter = new Emitter(width/2, height/2, 'confetti')
 }
 
 
@@ -65,12 +65,15 @@ function draw() {
     emitter.update()
     emitter.show()
 
+
     /** debug corner 🍁 TODO: make a function for this. dictionary! */
-    const DEBUG_Y_OFFSET = height - 50 /* floor of debug corner */
+    const LEFT_MARGIN = 10
+    const DEBUG_Y_OFFSET = height - 10 /* floor of debug corner */
     const LINE_HEIGHT = textAscent() + textDescent() + 2 /* 2 = lineSpacing */
     fill(0, 0, 100, 100) /* white */
     strokeWeight(0)
-    text(`emitter size: ${emitter.particles.length}`, 50, DEBUG_Y_OFFSET)
+    text(`emitter size: ${emitter.particles.length}`, LEFT_MARGIN, DEBUG_Y_OFFSET)
+    text(`particles: ${particles.length}`, LEFT_MARGIN, DEBUG_Y_OFFSET - LINE_HEIGHT)
     // text(`height: ${h.toFixed(2)}`, 50, DEBUG_Y_OFFSET - LINE_HEIGHT)
     // text(`σ: ${σ.toFixed(2)}`, 50, DEBUG_Y_OFFSET - n*LINE_HEIGHT)
 }
