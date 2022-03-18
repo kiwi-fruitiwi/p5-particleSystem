@@ -50,8 +50,15 @@ class Emitter {
         this.pos.y = mouseY
 
         this.emit(this.emissionRate)
-        let newEmitterParticles = []
 
+        // this.#cullExpiredParticles()
+        this.#cullExpiredParticlesInPlace()
+    }
+
+
+    /** removes expired particles by creating a new particle list */
+    #cullExpiredParticles() {
+        let newEmitterParticles = []
         for (const p of this.particles) {
             p.update()
             p.edges()
@@ -63,5 +70,20 @@ class Emitter {
         }
 
         this.particles = newEmitterParticles
+    }
+
+
+    /** uses splice to remove expired particles while iterating */
+    #cullExpiredParticlesInPlace() {
+        for (let i=this.particles.length-1; i>=0; i--) {
+            let p = this.particles[i]
+            p.update()
+            p.edges()
+
+            if (p.finished()) {
+                p.show()
+                this.particles.splice(i, 1);
+            }
+        }
     }
 }

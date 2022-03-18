@@ -11,7 +11,7 @@ let instructions  /* div for instructions */
 let DEBUG_MSG
 
 
-let particles
+let bubbles
 let emitter
 
 
@@ -37,9 +37,9 @@ function setup() {
         z → freeze sketch
         r → revitalize all current particle lifespans</pre>`)
 
-    particles = []
+    bubbles = []
     for (let i=0; i<100; i++) {
-        particles.push(new Particle(random(width), random(height)))
+        bubbles.push(new Particle(random(width), random(height)))
     }
 
     emitter = new Emitter(width/2, height/2, 'confetti')
@@ -52,7 +52,7 @@ function draw() {
     stroke(0, 0, 100)
     circle(mouseX, mouseY, 10)
 
-    for (const p of particles) {
+    for (const p of bubbles) {
         if (!p.finished()) {
             p.show()
             p.update()
@@ -75,7 +75,7 @@ function draw() {
     fill(0, 0, 100, 100) /* white */
     strokeWeight(0)
     text(`emitter size: ${emitter.particles.length}`, LEFT_MARGIN, DEBUG_Y_OFFSET)
-    text(`particles: ${particles.length}`, LEFT_MARGIN, DEBUG_Y_OFFSET - LINE_HEIGHT)
+    text(`particles: ${bubbles.length}`, LEFT_MARGIN, DEBUG_Y_OFFSET - LINE_HEIGHT)
     text(`debug: ${DEBUG_MSG}`, LEFT_MARGIN, DEBUG_Y_OFFSET - 2*LINE_HEIGHT)
     // text(`height: ${h.toFixed(2)}`, 50, DEBUG_Y_OFFSET - LINE_HEIGHT)
     // text(`σ: ${σ.toFixed(2)}`, 50, DEBUG_Y_OFFSET - n*LINE_HEIGHT)
@@ -92,8 +92,9 @@ function keyPressed() {
     }
 
     if (key === 'r') {
-        for (let p of particles) {
+        for (let p of bubbles) {
             p.lifetime = 100
+            p.vel = p5.Vector.random2D()
         }
     }
 }
