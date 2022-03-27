@@ -1,6 +1,6 @@
 /**
  *  @author Kiwi
- *  @date 2022.03
+ *  @date 2022.03.14
  *
  *  ☐ wand with particle emitter for cursor
  */
@@ -21,14 +21,13 @@ function preload() {
 
 
 function setup() {
-    rectMode(CENTER)
     let cnv = createCanvas(600, 300)
-    textFont(font, 14)
-
-    noCursor()
     cnv.parent('#canvas')
 
     colorMode(HSB, 360, 100, 100, 100)
+    textFont(font, 14)
+    rectMode(CENTER)
+    noCursor()
 
     /* initialize instruction div */
     instructions = select('#ins')

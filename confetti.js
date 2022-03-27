@@ -17,8 +17,8 @@ class Confetti extends Particle {
             strokeWeight(1)
             const h = random(360)
             stroke(h, 100, 100, 100)
-            fill(h, 100, 100, 50)
-            circle(this.pos.x, this.pos.y, 6)
+            // fill(h, 100, 100, 50)
+            circle(this.pos.x, this.pos.y, 4)
         } else {
             push()
             translate(this.pos.x, this.pos.y)
